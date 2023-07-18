@@ -1,0 +1,6 @@
+{
+    "Lua.diagnostics.disable": [
+        "need-check-nil",
+        "duplicate-set-field"
+    ]
+}
