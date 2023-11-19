@@ -55,7 +55,7 @@ function pathfinder:moveToWard(goalMapId, goalCellId)
 end
 
 function pathfinder:getPathTo(startMapId, startCellId, goalMapId, goalCellId)
-    local response = developer:getRequest(self.url .. "pathByMapId?startMapId=" .. startMapId .. "&startCellId=" .. startCellId .. "&goalMapId=" .. goalMapId .. "&goalCellId=" .. goalCellId)
+    local response = developer:getRequest(self.url .. "pathfinding/touch/pathByMapId?startMapId=" .. startMapId .. "&startCellId=" .. startCellId .. "&goalMapId=" .. goalMapId .. "&goalCellId=" .. goalCellId)
     if response then
         local data = self.json:decode(response)
         if data.path then
@@ -69,7 +69,7 @@ function pathfinder:getPathTo(startMapId, startCellId, goalMapId, goalCellId)
 end
 
 function pathfinder:getMaps(mapId)
-    local response = developer:getRequest(self.url .. "getMaps?mapId=" .. mapId)
+    local response = developer:getRequest(self.url .. "pathfinding/touch/getMaps?mapId=" .. mapId)
     if response then
         local data = self.json:decode(response)
         if data.status == "200" then

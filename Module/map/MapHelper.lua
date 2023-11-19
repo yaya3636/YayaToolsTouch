@@ -101,7 +101,7 @@ function mapHelper:getWalkableZones()
             table.insert(zones, zone)
         end
     end
-    collectgarbage("collect")
+    --collectgarbage("collect")
     return zones
 end
 
