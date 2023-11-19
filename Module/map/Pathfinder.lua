@@ -69,7 +69,7 @@ function pathfinder:getPathTo(startMapId, startCellId, goalMapId, goalCellId)
 end
 
 function pathfinder:getMaps(mapId)
-    local response = developer:getRequest(self.url .. "pathfinding/touch/getMaps?mapId=" .. mapId)
+    local response = developer:getRequest(self.url .. "maps/touch/getMaps?mapId=" .. mapId)
     if response then
         local data = self.json:decode(response)
         if data.status == "200" then
