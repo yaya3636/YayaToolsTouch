@@ -57,11 +57,11 @@ end
 function pathfinder:getPathTo(startMapId, startCellId, goalMapId, goalCellId)
     local response = developer:getRequest(self.url .. "pathfinding/touch/pathByMapId?startMapId=" .. startMapId .. "&startCellId=" .. startCellId .. "&goalMapId=" .. goalMapId .. "&goalCellId=" .. goalCellId)
     if response then
-        local data = self.json:decode(response)
-        if data.path then
-            return data.path
+        local decoded = self.json:decode(response)
+        if decoded.data.pathData then
+            return decoded.data.pathData
         else
-            self.logger:error(data.message)
+            self.logger:error(decoded.message)
         end
     else
         self.logger:warning("Failed to get path", "Pathfinder")
@@ -69,13 +69,13 @@ function pathfinder:getPathTo(startMapId, startCellId, goalMapId, goalCellId)
 end
 
 function pathfinder:getMaps(mapId)
-    local response = developer:getRequest(self.url .. "maps/touch/getMaps?mapId=" .. mapId)
+    local response = developer:getRequest(self.url .. "maps/touch/getMapsByMapId?mapId=" .. mapId)
     if response then
-        local data = self.json:decode(response)
-        if data.status == "200" then
-            return data.maps
+        local decoded = self.json:decode(response)
+        if decoded.status == "200" then
+            return decoded.data
         else
-            self.logger:error(data.message)
+            self.logger:error(decoded.message)
         end
     else
         self.logger:warning("Failed to get path", "Pathfinder")
