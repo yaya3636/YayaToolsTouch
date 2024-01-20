@@ -58,15 +58,11 @@ function pathfinder:moveToWard(goalMapId, goalCellId)
                         maps = self:getMaps(goalMapId)
                         if #maps == 1 then -- Si la prochaine map est unique, on utilise une cellid de changement de map aléatoire
                             dir = string.match(v.direction, "(.+)%(")
-                        else -- Sinon on utilise la direction avec la cellid de changement de map
-                            dir = v.direction
                         end
                     else -- Pendant le trajet
                         maps = self:getMaps(self.path[i + 1].mapId)
                         if #maps == 1 then
                             dir = string.match(v.direction, "(.+)%(")
-                        else
-                            dir = v.direction
                         end
                     end
                     self.logger:info("Map: (" .. v.mapId .. "), Change map to: " .. dir, "Pathfinder")
